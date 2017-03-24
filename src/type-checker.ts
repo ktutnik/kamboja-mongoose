@@ -1,4 +1,5 @@
 import { Resolver, Core } from "kamboja"
+import * as H from "./helper"
 
 export class TypeChecker {
     private name: string;
@@ -11,7 +12,7 @@ export class TypeChecker {
             let qualified = new Resolver.QualifiedName(type)
             this.qualified = qualified.isValid()
             if (this.qualified) {
-                this.name = qualified.className;
+                this.name = H.getName(qualified.className);
                 this.valid = true
                 this.array = qualified.isArray()
             }

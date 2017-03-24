@@ -1,11 +1,11 @@
 import * as Chai from "chai"
-import { SchemaGenerator } from "../src/schema-generator"
-import * as H from "./helper"
+import { SchemaGenerator } from "../../src/schema-generator"
+import * as H from "../helper"
 import * as Mongoose from "mongoose"
 
 describe("SchemaGenerator", () => {
     it("Should generate simple object", () => {
-        let classes = H.fromFile("test/models/simple-model.js")
+        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
         let clazz = classes.filter(x => x.name == "SimpleEntity")[0]
         let test = new SchemaGenerator()
         let result = test.generate(clazz)
@@ -18,7 +18,7 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should generate object with array", () => {
-        let classes = H.fromFile("test/models/simple-model.js")
+        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
         let clazz = classes.filter(x => x.name == "EntityWithArray")[0]
         let test = new SchemaGenerator()
         let result = test.generate(clazz)
@@ -31,7 +31,7 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should generate object with reference to other object", () => {
-        let classes = H.fromFile("test/models/simple-model.js")
+        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
         let clazz = classes.filter(x => x.name == "ReferenceEntity")[0]
         let test = new SchemaGenerator()
         let result = test.generate(clazz)
@@ -44,7 +44,7 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should generate object with array reference to other object", () => {
-        let classes = H.fromFile("test/models/simple-model.js")
+        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
         let clazz = classes.filter(x => x.name == "ReferenceEntityWithArray")[0]
         let test = new SchemaGenerator()
         let result = test.generate(clazz)
@@ -57,7 +57,7 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should return undefined if no decorated property", () => {
-        let classes = H.fromFile("test/models/simple-model.js")
+        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
         let clazz = classes.filter(x => x.name == "EntityWithoutDecorator")[0]
         let test = new SchemaGenerator()
         let result = test.generate(clazz)
@@ -65,7 +65,7 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should throw if multiple decorator found", () => {
-        let classes = H.fromFile("test/models/simple-model.js")
+        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
         let clazz = classes.filter(x => x.name == "EntityMultipleDecorated")[0]
         let test = new SchemaGenerator()
         Chai.expect(() => {
@@ -74,7 +74,7 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should throw unsupported type found", () => {
-        let classes = H.fromFile("test/models/simple-model.js")
+        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
         let clazz = classes.filter(x => x.name == "EntityWithUnsupportedType")[0]
         let test = new SchemaGenerator()
         Chai.expect(() => {
