@@ -25,6 +25,7 @@
     "kamboja": "0.0.1-22",
     "kecubung": "0.0.7-0",
     "mongoose": "^4.8.6",
+    "reflect-metadata": "^0.1.10",
     "tslib": "^1.6.0"
   },
   "devDependencies": {
