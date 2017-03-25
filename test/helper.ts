@@ -40,3 +40,24 @@ export function fromCode(code, filePath: string = "") {
     let result = Kecubung.transform("ASTree", ast, filePath);
     return flatten(result.children, filePath)
 }
+
+function cleanupArray(obj: any) {
+    let result:any[] = []
+    obj.forEach(x => {
+        let clean = cleanup(x)
+        result.push(clean)
+    })
+    return result
+}
+
+export function cleanup(obj) {
+    let exclude = ["_id", "__v"]
+    let result:any = {}
+    if(Array.isArray(obj)) return cleanupArray(obj)
+    for (let key in obj) {
+        if (exclude.some(x => x === key)) continue
+        else if (typeof obj[key] == "object" && !(obj[key] instanceof Date)) result[key] = cleanup(obj[key])
+        else result[key] = obj[key]
+    }
+    return result
+}

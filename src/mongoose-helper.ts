@@ -6,21 +6,19 @@ import * as H from "./helper"
 export class MongooseHelper {
     schemas: { [key: string]: Mongoose.Schema } = {}
 
-    constructor(storage:Core.MetaDataStorage) {
-        this.init(storage.getClasses("Model"))
+    constructor(classes: Core.QualifiedClassMetaData[]) {
+        this.init(classes)
     }
 
-    getModel<T extends Mongoose.Document>(name:string){
-        return Mongoose.model<T>(name, this.schemas[name])
+    createModel<T>(name: string, doc?: any) {
+        return Mongoose.model<T & Mongoose.Document>(name, this.schemas[name])
     }
 
     private init(classes: Core.QualifiedClassMetaData[]) {
         let generator = new SchemaGenerator()
         classes.forEach(x => {
             let schema = generator.generate(x)
-            if(schema){
-                this.schemas[H.getName(x.name)] = new Mongoose.Schema(schema)
-            }
+            this.schemas[H.getName(x.name)] = new Mongoose.Schema(schema)
         })
     }
 }

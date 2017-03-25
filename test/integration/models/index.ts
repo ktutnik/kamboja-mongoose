@@ -1,5 +1,5 @@
 import { val } from "kamboja"
-import { Document } from "mongoose"
+import { Document, Schema } from "mongoose"
 
 export class UserModel  {
     @val.type("string")
@@ -22,20 +22,11 @@ export class CategoryModel {
 
 export class ItemModel {
     @val.type("string")
-    barCode: string
-
-    @val.type("string")
     name: string
 
     @val.type("CategoryModel, test/integration/models/index")
-    category:CategoryModel
-
-    @val.type("number")
-    price: number
+    category:CategoryModel | Schema.Types.ObjectId
 
     @val.type("UserModel, test/integration/models/index")
-    createdBy:UserModel
-
-    @val.type("date")
-    createdOn: Date
+    createdBy:UserModel | Schema.Types.ObjectId
 }
