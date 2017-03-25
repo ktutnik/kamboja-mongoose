@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- stable
+- 6
+- 5
+- 4
+services: mongodb
+after_script: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+deploy:
+  provider: npm
+  email: ktutnik@gmail.com
+  on:
+    tags: true
+  
