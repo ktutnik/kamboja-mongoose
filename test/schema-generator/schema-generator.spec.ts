@@ -6,6 +6,7 @@ import * as Mongoose from "mongoose"
 describe("SchemaGenerator", () => {
     it("Should generate simple object", () => {
         let classes = H.fromFile("test/schema-generator/models/simple-model.js")
+        console.log(classes)
         let clazz = classes.filter(x => x.name == "SimpleEntity")[0]
         let test = new SchemaGenerator()
         let result = test.generate(clazz)
