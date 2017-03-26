@@ -22,7 +22,7 @@
   "homepage": "https://github.com/ktutnik/kamboja-mongoose#readme",
   "dependencies": {
     "@types/mongoose": "^4.7.8",
-    "kamboja": "0.0.1-22",
+    "kamboja": "0.0.1-23",
     "kecubung": "0.0.7-0",
     "mongoose": "^4.8.6",
     "reflect-metadata": "^0.1.10",
@@ -31,7 +31,6 @@
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.37",
-    "@types/sinon": "^1.16.34",
     "babylon": "^6.16.1",
     "chai": "^3.5.0",
     "coveralls": "^2.11.15",
@@ -44,7 +43,6 @@
     "gulp-typescript": "^3.0.0",
     "mocha": "^3.2.0",
     "run-sequence": "^1.2.2",
-    "sinon": "^1.17.7",
     "supertest": "^3.0.0",
     "tslint": "^4.4.2",
     "typescript": "^2.1.1"
