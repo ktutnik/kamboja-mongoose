@@ -22,7 +22,7 @@
   "homepage": "https://github.com/ktutnik/kamboja-mongoose#readme",
   "dependencies": {
     "@types/mongoose": "^4.7.8",
-    "kamboja": "0.0.1-27",
+    "kamboja": "0.0.1-28",
     "kecubung": "0.0.7-0",
     "mongoose": "^4.8.6",
     "reflect-metadata": "^0.1.10",
@@ -44,7 +44,7 @@
     "mocha": "^3.2.0",
     "run-sequence": "^1.2.2",
     "supertest": "^3.0.0",
-    "tslint": "^4.4.2",
+    "tslint": "^5.0.0",
     "typescript": "^2.1.1"
   }
 }
