@@ -6,7 +6,7 @@ import * as H from "./helper"
 export class MongooseHelper {
     schemas: { [key: string]: Mongoose.Schema } = {}
 
-    constructor(classes: Core.QualifiedClassMetaData[]) {
+    constructor(private pathResolver:Core.PathResolver, classes: Core.QualifiedClassMetaData[]) {
         this.init(classes)
     }
 
@@ -15,7 +15,7 @@ export class MongooseHelper {
     }
 
     private init(classes: Core.QualifiedClassMetaData[]) {
-        let generator = new SchemaGenerator()
+        let generator = new SchemaGenerator(this.pathResolver)
         classes.forEach(x => {
             let schema = generator.generate(x)
             this.schemas[H.getName(x.name)] = new Mongoose.Schema(schema)
