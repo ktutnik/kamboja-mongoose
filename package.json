@@ -1,6 +1,6 @@
 {
   "name": "kamboja-mongoose",
-  "version": "0.0.1-7",
+  "version": "0.0.1-8",
   "description": "Kamboja helper for MongooseJS",
   "main": "lib/source/index.js",
   "typings": "lib/dts/index.d.ts",
