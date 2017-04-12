@@ -1,12 +1,23 @@
-import { Core } from "kamboja"
+import { Core, Kamboja } from "kamboja"
 import * as Mongoose from "mongoose"
 import { SchemaGenerator } from "./schema-generator"
 import * as H from "./helper"
 
 export class MongooseHelper {
+    private static instance: MongooseHelper
     schemas: { [key: string]: Mongoose.Schema } = {}
 
-    constructor(private pathResolver:Core.PathResolver, classes: Core.QualifiedClassMetaData[]) {
+    static getInstance() {
+        if (!MongooseHelper.instance) {
+            let facade = Kamboja.getFacade();
+            if (!facade) throw new Error("Instance of Kamboja not found, do setup after Kamboja instantiation")
+            MongooseHelper.instance = new MongooseHelper(facade.pathResolver,
+                facade.metaDataStorage.getClasses("Model"))
+        }
+        return MongooseHelper.instance
+    }
+
+    constructor(private pathResolver: Core.PathResolver, classes: Core.QualifiedClassMetaData[]) {
         this.init(classes)
     }
 

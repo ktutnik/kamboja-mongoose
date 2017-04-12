@@ -20,6 +20,24 @@ describe("Integration Test", () => {
         await Mongoose.disconnect()
     })
 
+    it("Should throw if singleton called before Kamboja instantiation", () => {
+        Chai.expect(() => {
+            let instance = MongooseHelper.getInstance();
+        }).throw("Instance of Kamboja not found, do setup after Kamboja instantiation")
+    })
+
+    it("Should provide singleton", () => {
+        let kamboja = new Kamboja({ init: () => { } }, <Core.KambojaOption>{
+            rootPath: __dirname,
+            modelPath: "models"
+        })
+        kamboja.init()
+        let instance = MongooseHelper.getInstance();
+        Chai.expect(instance).not.null
+        let secondInstance = MongooseHelper.getInstance();
+        Chai.expect(instance == secondInstance).true
+    })
+
     it("Should save/load simple object", async () => {
         let User = test.createModel<UserModel>("User")
         await User.remove(x => { })
