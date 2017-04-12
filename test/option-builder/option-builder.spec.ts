@@ -4,7 +4,7 @@ import * as H from "../helper"
 import * as Mongoose from "mongoose"
 import { Resolver } from "kamboja"
 
-describe.only("OptionBuilder", () => {
+describe("OptionBuilder", () => {
     it("Should generate option with naming convention", () => {
         let classes = H.fromFile("model/models.js", new Resolver.DefaultPathResolver(__dirname))
         let clazz = classes.filter(x => x.name == "ByConvention")[0]

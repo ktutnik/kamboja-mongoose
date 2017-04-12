@@ -54,6 +54,7 @@ describe("Integration Test", () => {
         Chai.expect(result[0].displayName).eq("Nobita Nobi")
         Chai.expect(result[0].dateOfBirth.toDateString()).eq(dob.toDateString())
         Chai.expect(result[0].rate).eq(5)
+        Chai.expect(result[0].createdAt.toDateString()).eq(new Date().toDateString())
         //cleanup
     })
 
