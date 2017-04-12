@@ -29,8 +29,8 @@ function flatten(metaList: Kecubung.MetaData[], fileName: string): Core.Qualifie
     return result;
 }
 
-export function fromFile(filePath: string) {
-    let path = Path.join(process.cwd(), filePath)
+export function fromFile(filePath: string, pathResolver:Core.PathResolver) {
+    let path = pathResolver.resolve(filePath)
     let code = Fs.readFileSync(path).toString()
     return fromCode(code, filePath)
 }

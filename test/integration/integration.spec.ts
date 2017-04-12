@@ -2,7 +2,7 @@ import * as Chai from "chai"
 import { MongooseHelper } from "../../src"
 import * as H from "../helper"
 import * as Mongoose from "mongoose"
-import { Core } from "kamboja"
+import { Core, Kamboja, Resolver } from "kamboja"
 import * as Kecubung from "kecubung"
 import { UserModel, CategoryModel, ItemModel } from "./models"
 import * as Util from "util"
@@ -12,7 +12,8 @@ describe("Integration Test", () => {
     before(async () => {
         require('mongoose').Promise = global.Promise
         await Mongoose.connect("mongodb://localhost/test")
-        test = new MongooseHelper(H.fromFile("test/integration/models/index.js"))
+        let pathResolver = new Resolver.DefaultPathResolver(__dirname);
+        test = new MongooseHelper(pathResolver, H.fromFile("models/index.js", pathResolver))
     })
 
     after(async () => {
@@ -81,7 +82,7 @@ describe("Integration Test", () => {
             Chai.expect(createdBy.rate).eq(5)
         }
         let cat = result[0].category
-        if(cat instanceof CategoryModel){
+        if (cat instanceof CategoryModel) {
             Chai.expect(cat.name).eq("The Category")
         }
     })

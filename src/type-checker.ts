@@ -7,9 +7,9 @@ export class TypeChecker {
     private array: boolean = false
     private valid: boolean = false;
 
-    constructor(private type: string) {
+    constructor(private type: string, pathResolver:Core.PathResolver) {
         if (type) {
-            let qualified = new Resolver.QualifiedName(type)
+            let qualified = new Resolver.QualifiedName(type, pathResolver)
             this.qualified = qualified.isValid()
             if (this.qualified) {
                 this.name = H.getName(qualified.className);

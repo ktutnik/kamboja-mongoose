@@ -2,13 +2,14 @@ import * as Chai from "chai"
 import { SchemaGenerator } from "../../src/schema-generator"
 import * as H from "../helper"
 import * as Mongoose from "mongoose"
+import { Resolver } from "kamboja"
 
 describe("SchemaGenerator", () => {
     it("Should generate simple object", () => {
-        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
+        let classes = H.fromFile("models/simple-model.js", new Resolver.DefaultPathResolver(__dirname))
         console.log(classes)
         let clazz = classes.filter(x => x.name == "SimpleEntity")[0]
-        let test = new SchemaGenerator()
+        let test = new SchemaGenerator(new Resolver.DefaultPathResolver(__dirname))
         let result = test.generate(clazz)
         Chai.expect(result).deep.eq({
             name: String,
@@ -19,9 +20,9 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should generate object with array", () => {
-        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
+        let classes = H.fromFile("models/simple-model.js", new Resolver.DefaultPathResolver(__dirname))
         let clazz = classes.filter(x => x.name == "EntityWithArray")[0]
-        let test = new SchemaGenerator()
+        let test = new SchemaGenerator(new Resolver.DefaultPathResolver(__dirname))
         let result = test.generate(clazz)
         Chai.expect(result).deep.eq({
             name: [String],
@@ -32,9 +33,9 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should generate object with reference to other object", () => {
-        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
+        let classes = H.fromFile("models/simple-model.js", new Resolver.DefaultPathResolver(__dirname))
         let clazz = classes.filter(x => x.name == "ReferenceEntity")[0]
-        let test = new SchemaGenerator()
+        let test = new SchemaGenerator(new Resolver.DefaultPathResolver(__dirname))
         let result = test.generate(clazz)
         Chai.expect(result).deep.eq({
             children: {
@@ -45,9 +46,9 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should generate object with array reference to other object", () => {
-        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
+        let classes = H.fromFile("models/simple-model.js", new Resolver.DefaultPathResolver(__dirname))
         let clazz = classes.filter(x => x.name == "ReferenceEntityWithArray")[0]
-        let test = new SchemaGenerator()
+        let test = new SchemaGenerator(new Resolver.DefaultPathResolver(__dirname))
         let result = test.generate(clazz)
         Chai.expect(result).deep.eq({
             children: [{
@@ -58,26 +59,26 @@ describe("SchemaGenerator", () => {
     })
 
     it("Should return undefined if no decorated property", () => {
-        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
+        let classes = H.fromFile("models/simple-model.js", new Resolver.DefaultPathResolver(__dirname))
         let clazz = classes.filter(x => x.name == "EntityWithoutDecorator")[0]
-        let test = new SchemaGenerator()
+        let test = new SchemaGenerator(new Resolver.DefaultPathResolver(__dirname))
         let result = test.generate(clazz)
         Chai.expect(result).undefined
     })
 
     it("Should throw if multiple decorator found", () => {
-        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
+        let classes = H.fromFile("models/simple-model.js", new Resolver.DefaultPathResolver(__dirname))
         let clazz = classes.filter(x => x.name == "EntityMultipleDecorated")[0]
-        let test = new SchemaGenerator()
+        let test = new SchemaGenerator(new Resolver.DefaultPathResolver(__dirname))
         Chai.expect(() => {
             test.generate(clazz)
         }).throw("Multiple @val.type found in [EntityMultipleDecorated]")
     })
 
     it("Should throw unsupported type found", () => {
-        let classes = H.fromFile("test/schema-generator/models/simple-model.js")
+        let classes = H.fromFile("models/simple-model.js", new Resolver.DefaultPathResolver(__dirname))
         let clazz = classes.filter(x => x.name == "EntityWithUnsupportedType")[0]
-        let test = new SchemaGenerator()
+        let test = new SchemaGenerator(new Resolver.DefaultPathResolver(__dirname))
         Chai.expect(() => {
             test.generate(clazz)
         }).throw("Invalid type found in @val.type in [EntityWithUnsupportedType]")

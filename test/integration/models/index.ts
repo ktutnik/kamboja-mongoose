@@ -24,9 +24,9 @@ export class ItemModel {
     @val.type("string")
     name: string
 
-    @val.type("CategoryModel, test/integration/models/index")
+    @val.type("CategoryModel, models/index")
     category:CategoryModel | Schema.Types.ObjectId
 
-    @val.type("UserModel, test/integration/models/index")
+    @val.type("UserModel, models/index")
     createdBy:UserModel | Schema.Types.ObjectId
 }

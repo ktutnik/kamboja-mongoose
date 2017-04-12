@@ -1,5 +1,6 @@
 # kamboja-mongoose
 
+[![npm version](https://badge.fury.io/js/kamboja-mongoose.svg)](https://badge.fury.io/js/kamboja-mongoose)
 [![Build Status](https://travis-ci.org/kambojajs/kamboja-mongoose.svg?branch=master)](https://travis-ci.org/kambojajs/kamboja-mongoose)
 [![Coverage Status](https://coveralls.io/repos/github/kambojajs/kamboja-mongoose/badge.svg?branch=master)](https://coveralls.io/github/kambojajs/kamboja-mongoose?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/kambojajs/kamboja-mongoose/badge.svg)](https://snyk.io/test/github/kambojajs/kamboja-mongoose)
