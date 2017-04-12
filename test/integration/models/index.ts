@@ -13,6 +13,9 @@ export class UserModel  {
 
     @val.type("number")
     rate:number
+
+    @val.type("date")
+    createdAt:Date
 }
 
 export class CategoryModel {

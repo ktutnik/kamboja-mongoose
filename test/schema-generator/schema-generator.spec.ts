@@ -7,7 +7,6 @@ import { Resolver } from "kamboja"
 describe("SchemaGenerator", () => {
     it("Should generate simple object", () => {
         let classes = H.fromFile("models/simple-model.js", new Resolver.DefaultPathResolver(__dirname))
-        console.log(classes)
         let clazz = classes.filter(x => x.name == "SimpleEntity")[0]
         let test = new SchemaGenerator(new Resolver.DefaultPathResolver(__dirname))
         let result = test.generate(clazz)
