@@ -22,10 +22,12 @@
   "homepage": "https://github.com/ktutnik/kamboja-mongoose#readme",
   "dependencies": {
     "@types/mongoose": "^4.7.10",
-    "kamboja": "0.0.1-34",
+    "@types/shortid": "0.0.28",
+    "kamboja": "0.0.1-38",
     "kecubung": "0.0.7-1",
     "mongoose": "^4.9.4",
     "reflect-metadata": "^0.1.10",
+    "shortid": "^2.2.8",
     "tslib": "^1.6.0"
   },
   "devDependencies": {

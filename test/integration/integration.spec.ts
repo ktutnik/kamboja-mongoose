@@ -4,7 +4,7 @@ import * as H from "../helper"
 import * as Mongoose from "mongoose"
 import { Core, Kamboja, Resolver } from "kamboja"
 import * as Kecubung from "kecubung"
-import { UserModel, CategoryModel, ItemModel } from "./models"
+import { UserModel, CategoryModel, ItemModel, ProductModel } from "./models"
 import * as Util from "util"
 
 describe("Integration Test", () => {
@@ -104,5 +104,18 @@ describe("Integration Test", () => {
         if (cat instanceof CategoryModel) {
             Chai.expect(cat.name).eq("The Category")
         }
+    })
+
+    it("Should able to use shortid", async () => {
+        let Product = test.createModel<ProductModel>("Product")
+        await Product.remove(x => { })
+        let dob = new Date()
+        let user = new Product({
+            name: "i-Phone 7s Plus",
+        })
+        await user.save()
+        let result = await Product.find().exec()
+        Chai.expect(result[0].name).eq("i-Phone 7s Plus")
+        Chai.expect(result[0]._id.length).eq(9)
     })
 })

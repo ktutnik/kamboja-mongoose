@@ -1,7 +1,8 @@
 import { val } from "kamboja"
 import { Document, Schema } from "mongoose"
+import { mongoose } from "../../../src"
 
-export class UserModel  {
+export class UserModel {
     @val.type("string")
     email: string
 
@@ -12,15 +13,15 @@ export class UserModel  {
     dateOfBirth: Date
 
     @val.type("number")
-    rate:number
+    rate: number
 
     @val.type("date")
-    createdAt:Date
+    createdAt: Date
 }
 
 export class CategoryModel {
     @val.type("string")
-    name:string
+    name: string
 }
 
 export class ItemModel {
@@ -28,8 +29,14 @@ export class ItemModel {
     name: string
 
     @val.type("CategoryModel, models/index")
-    category:CategoryModel | Schema.Types.ObjectId
+    category: CategoryModel | Schema.Types.ObjectId
 
     @val.type("UserModel, models/index")
-    createdBy:UserModel | Schema.Types.ObjectId
+    createdBy: UserModel | Schema.Types.ObjectId
+}
+
+@mongoose.shortid()
+export class ProductModel {
+    @val.type("string")
+    name: string
 }
