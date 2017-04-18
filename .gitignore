@@ -7,3 +7,4 @@ npm-debug.log
 *.js.map
 *.d.ts
 !gulpfile.js
+build.sh

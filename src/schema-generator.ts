@@ -2,13 +2,21 @@ import { Core } from "kamboja"
 import { TypeConverter } from "./type-converter"
 import { TypeChecker } from "./type-checker"
 import * as Kecubung from "kecubung"
+import * as Shortid from "shortid"
 
 export class SchemaGenerator {
-    constructor(private pathResolver:Core.PathResolver){}
+    constructor(private pathResolver: Core.PathResolver) { }
 
     generate(clazz: Core.QualifiedClassMetaData) {
         let schema: any = {}
         if (!clazz.properties) return
+        //shortid
+        if (clazz.decorators && clazz.decorators.some(x => x.name == "shortid")) {
+            schema._id = {
+                type: String,
+                'default': Shortid.generate
+            }
+        }
         let converter = new TypeConverter(this.pathResolver)
         clazz.properties.forEach(x => {
             let type = this.getType(x, clazz.name)
