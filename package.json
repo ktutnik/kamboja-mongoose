@@ -1,6 +1,6 @@
 {
   "name": "kamboja-mongoose",
-  "version": "0.0.1-8",
+  "version": "0.0.1-10",
   "description": "Kamboja helper for MongooseJS",
   "main": "lib/source/index.js",
   "typings": "lib/dts/index.d.ts",
@@ -23,8 +23,8 @@
   "dependencies": {
     "@types/mongoose": "^4.7.10",
     "@types/shortid": "0.0.28",
-    "kamboja": "0.0.1-38",
-    "kecubung": "0.0.7-1",
+    "kamboja": "0.0.1-39",
+    "kecubung": "0.0.7-2",
     "mongoose": "^4.9.4",
     "reflect-metadata": "^0.1.10",
     "shortid": "^2.2.8",
