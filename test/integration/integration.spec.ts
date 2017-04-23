@@ -26,6 +26,12 @@ describe("Integration Test", () => {
         }).throw("Instance of Kamboja not found, do setup after Kamboja instantiation")
     })
 
+    it("Should provide access to schemas", () => {
+        for(let key in test.schemas){
+            Chai.expect(test.schemas[key] instanceof Mongoose.Schema).true
+        }
+    })
+
     it("Should provide singleton", () => {
         let kamboja = new Kamboja({ init: () => { } }, <Core.KambojaOption>{
             rootPath: __dirname,
