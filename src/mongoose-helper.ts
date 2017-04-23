@@ -4,6 +4,7 @@ import { SchemaGenerator } from "./schema-generator"
 import * as H from "./helper"
 import * as Kecubung from "kecubung"
 import { OptionBuilder } from "./option-builder"
+import { TypeConverter } from "./type-converter"
 
 export class MongooseHelper {
     private static instance: MongooseHelper
@@ -28,13 +29,14 @@ export class MongooseHelper {
     }
 
     private init(classes: Core.QualifiedClassMetaData[]) {
-        let generator = new SchemaGenerator(this.pathResolver)
+        let converter = new TypeConverter(this.pathResolver, classes)
+        let generator = new SchemaGenerator(this.pathResolver, converter)
         let optionBuilder = new OptionBuilder()
-            classes.forEach(x => {
-                let schema = generator.generate(x)
-                let option = optionBuilder.getOption(x)
-                this.schemas[H.getName(x.name)] = new Mongoose.Schema(schema, option)
-            })
+        classes.forEach(x => {
+            let schema = generator.generate(x)
+            let option = optionBuilder.getOption(x)
+            this.schemas[H.getName(x.name)] = new Mongoose.Schema(schema, option)
+        })
     }
 
 

@@ -40,3 +40,19 @@ export class ProductModel {
     @val.type("string")
     name: string
 }
+
+export class ParentProductModel{
+    @val.type("string")
+    name: string
+
+    @val.type("ProductModel, models/index")
+    child:ProductModel
+}
+
+export class ParentMultiChildModel{
+    @val.type("string")
+    name: string
+
+    @val.type("ProductModel[], models/index")
+    child:ProductModel[]
+}

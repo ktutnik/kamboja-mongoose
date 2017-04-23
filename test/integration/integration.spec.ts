@@ -4,7 +4,7 @@ import * as H from "../helper"
 import * as Mongoose from "mongoose"
 import { Core, Kamboja, Resolver } from "kamboja"
 import * as Kecubung from "kecubung"
-import { UserModel, CategoryModel, ItemModel, ProductModel } from "./models"
+import { UserModel, CategoryModel, ItemModel, ProductModel, ParentProductModel, ParentMultiChildModel } from "./models"
 import * as Util from "util"
 
 describe("Integration Test", () => {
@@ -114,8 +114,50 @@ describe("Integration Test", () => {
             name: "i-Phone 7s Plus",
         })
         await user.save()
-        let result = await Product.find().exec()
+        let result = await Product.find().lean().exec()
+        console.log(result)
         Chai.expect(result[0].name).eq("i-Phone 7s Plus")
         Chai.expect(result[0]._id.length).eq(9)
+    })
+
+    it("Should able to add relation to model with shortid", async () => {
+        let Product = test.createModel<ProductModel>("Product")
+        let ParentProduct = test.createModel<ParentProductModel>("ParentProduct") 
+
+        await Promise.all([
+            Product.remove(x => { }),
+            ParentProduct.remove(x => { })
+        ])
+
+        let productModel = new Product({name: "i-Phone 7s Plus"})
+        let prod = await productModel.save()
+        let parentModel = new ParentProduct({name: "The parent", child: prod._id })
+        let parent = await parentModel.save()
+
+        let result = await ParentProduct.find().populate("child").exec();
+        Chai.expect(result[0].name).eq("The parent")
+        Chai.expect(result[0].child.name).eq("i-Phone 7s Plus")
+    })
+
+    it("Should able to map one to many", async () => {
+        let Product = test.createModel<ProductModel>("Product")
+        let ParentProduct = test.createModel<ParentMultiChildModel>("ParentMultiChild") 
+
+        await Promise.all([
+            Product.remove(x => { }),
+            ParentProduct.remove(x => { })
+        ])
+
+        let iphoneModel = new Product({name: "i-Phone 7s Plus"})
+        let iphone = await iphoneModel.save()
+        let iPadModel = new Product({name: "i-Pad Pro 9 inch"})
+        let ipad = await iPadModel.save()
+        let parentModel = new ParentProduct({name: "The parent", child: [iphone._id, ipad._id] })
+        let parent = await parentModel.save()
+
+        let result = await ParentProduct.find().populate("child").exec();
+        Chai.expect(result[0].name).eq("The parent")
+        Chai.expect(result[0].child[0].name).eq("i-Phone 7s Plus")
+        Chai.expect(result[0].child[1].name).eq("i-Pad Pro 9 inch")
     })
 })

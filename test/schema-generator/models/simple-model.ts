@@ -1,12 +1,12 @@
 import { val } from "kamboja"
 
 export class ReferenceEntityWithArray {
-    @val.type("SimpleEntity[], some/path")
+    @val.type("SimpleEntity[], models/simple-model")
     children: SimpleEntity[]
 }
 
 export class ReferenceEntity {
-    @val.type("SimpleEntity, some/path")
+    @val.type("SimpleEntity, models/simple-model")
     children: SimpleEntity
 }
 
