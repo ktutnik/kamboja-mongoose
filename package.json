@@ -23,7 +23,7 @@
   "dependencies": {
     "@types/mongoose": "^4.7.10",
     "@types/shortid": "0.0.28",
-    "kamboja": "0.0.1-40",
+    "kamboja": "0.0.1-43",
     "kecubung": "0.0.7-3",
     "mongoose": "^4.9.4",
     "reflect-metadata": "^0.1.10",
