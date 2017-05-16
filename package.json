@@ -21,21 +21,21 @@
   },
   "homepage": "https://github.com/ktutnik/kamboja-mongoose#readme",
   "dependencies": {
-    "@types/mongoose": "^4.7.10",
-    "@types/shortid": "0.0.28",
-    "kamboja": "0.0.1-43",
+    "@types/mongoose": "^4.7.12",
+    "@types/shortid": "0.0.29",
+    "kamboja": "0.0.1-48",
     "kecubung": "0.0.7-3",
-    "mongoose": "^4.9.4",
+    "mongoose": "^4.9.9",
     "reflect-metadata": "^0.1.10",
     "shortid": "^2.2.8",
-    "tslib": "^1.6.0"
+    "tslib": "^1.7.1"
   },
   "devDependencies": {
-    "@types/chai": "^3.5.0",
-    "@types/mocha": "^2.2.40",
-    "babylon": "^6.16.1",
+    "@types/chai": "^3.5.2",
+    "@types/mocha": "^2.2.41",
+    "babylon": "^6.17.1",
     "chai": "^3.5.0",
-    "coveralls": "^2.13.0",
+    "coveralls": "^2.13.1",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-istanbul": "^1.1.1",
@@ -43,10 +43,10 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-tslint": "^8.0.0",
     "gulp-typescript": "^3.1.6",
-    "mocha": "^3.2.0",
+    "mocha": "^3.4.1",
     "run-sequence": "^1.2.2",
     "supertest": "^3.0.0",
-    "tslint": "^5.1.0",
-    "typescript": "^2.2.2"
+    "tslint": "^5.2.0",
+    "typescript": "^2.3.2"
   }
 }
