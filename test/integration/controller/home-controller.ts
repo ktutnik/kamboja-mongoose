@@ -1,7 +1,7 @@
-import {Controller} from "kamboja"
+import {Controller, Core} from "kamboja"
 
 export class HomeController extends Controller{
     index(){
-        return this.view()
+        return "Hello"
     }
 }
