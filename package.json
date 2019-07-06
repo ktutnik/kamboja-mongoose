@@ -7,7 +7,9 @@
   "scripts": {
     "test": "gulp",
     "preversion": "gulp",
-    "postversion": "git push origin master && git push origin master --tags"
+    "postversion": "git push origin master && git push origin master --tags",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,8 @@
     "mongoose": "^4.10.2",
     "reflect-metadata": "^0.1.10",
     "shortid": "^2.2.8",
-    "tslib": "^1.7.1"
+    "tslib": "^1.7.1",
+    "snyk": "^1.192.3"
   },
   "devDependencies": {
     "@types/chai": "^3.5.2",
@@ -48,5 +51,6 @@
     "supertest": "^3.0.0",
     "tslint": "^5.3.2",
     "typescript": "^2.3.3"
-  }
+  },
+  "snyk": true
 }
